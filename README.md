@@ -45,6 +45,8 @@ mapabalizasv16/
 │   │   ├── utils/          # Utilidades
 │   │   └── styles/         # Estilos globales
 │   └── package.json
+├── start.sh                # Script de arranque automático
+├── stop.sh                 # Script para detener servicios
 ├── README.md               # Este archivo
 └── .gitignore
 ```
@@ -84,10 +86,37 @@ npm install
 
 ### Ejecución
 
+#### 🎯 Método Recomendado: Script de Arranque Automático
+
+El proyecto incluye scripts de arranque y parada para facilitar el inicio del sistema:
+
+**Iniciar todo el sistema:**
+```bash
+./start.sh
+```
+
+Este script:
+- ✅ Verifica que PostgreSQL esté corriendo
+- ✅ Limpia procesos anteriores
+- ✅ Verifica e instala dependencias si es necesario
+- ✅ Inicia el backend (puerto 3000)
+- ✅ Inicia el frontend (puerto 5173)
+- ✅ Verifica la conexión a la base de datos
+- ✅ Muestra un resumen del estado del sistema
+
+**Detener todos los servicios:**
+```bash
+./stop.sh
+```
+
+#### 🔧 Método Manual
+
+Si prefieres iniciar los servicios manualmente:
+
 1. **Iniciar el backend**
 ```bash
 cd backend-simple
-npm run dev
+node server.js
 # El servidor estará en http://localhost:3000
 ```
 
