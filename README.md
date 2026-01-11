@@ -234,22 +234,45 @@ El sistema obtiene datos de balizas V16 de:
 
 ## 🚢 Despliegue
 
-### Backend
+El proyecto incluye scripts y documentación completa para desplegar en diferentes plataformas.
 
-El backend puede desplegarse en cualquier plataforma que soporte Node.js:
-- Heroku
-- Railway
-- Render
-- Vercel (con serverless functions)
-- AWS Lambda
+### Scripts de Instalación y Backup
 
-### Frontend
+- **`setup.sh`** - Instalación completa del sistema (dependencias, BD, configuración)
+- **`backup-db.sh`** - Backup de la base de datos
+- **`restore-db.sh`** - Restaurar base de datos desde backup
+- **`start.sh`** - Iniciar todos los servicios
+- **`stop.sh`** - Detener todos los servicios
 
-El frontend puede desplegarse como sitio estático:
-- Vercel
-- Netlify
-- GitHub Pages
-- AWS S3 + CloudFront
+### Plataformas Recomendadas
+
+#### ⭐ Railway (Recomendado)
+- Fácil de usar, perfecto para principiantes
+- PostgreSQL incluido
+- Despliegue automático desde GitHub
+- Ver [DEPLOY.md](DEPLOY.md) para instrucciones detalladas
+
+#### 🥈 Render
+- Plan gratuito permanente
+- PostgreSQL gratuito
+- SSL automático
+
+#### 🥉 Fly.io
+- Muy flexible y potente
+- Mejor para control total
+
+#### 🐳 Docker
+- Máxima portabilidad
+- Funciona en cualquier plataforma
+
+### Documentación Completa
+
+Consulta **[DEPLOY.md](DEPLOY.md)** para:
+- Guías paso a paso de cada plataforma
+- Configuración de variables de entorno
+- Inicialización de base de datos
+- Scripts de backup y restore
+- Consideraciones de producción
 
 ## 📝 Licencia
 

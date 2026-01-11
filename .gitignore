@@ -34,3 +34,10 @@ tmp/
 temp/
 *.tmp
 
+# Database backups
+backups/
+*.sql
+*.tar.gz
+*.dump
+*.backup
+

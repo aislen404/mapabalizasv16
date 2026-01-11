@@ -15,7 +15,13 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors());
+// CORS más permisivo para desarrollo
+app.use(cors({
+  origin: '*', // Permitir todas las peticiones en desarrollo
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}));
 app.use(express.json());
 
 // Cache en memoria (en producción usar Redis)
@@ -427,9 +433,17 @@ if (process.env.DATABASE_URL || process.env.DB_NAME) {
 
 // Las funciones están exportadas desde services/balizasService.js
 
-// Iniciar servidor
-app.listen(PORT, () => {
+// Iniciar servidor - escuchar en todas las interfaces (0.0.0.0) para mejor compatibilidad
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Servidor API corriendo en http://localhost:${PORT}`);
     console.log(`📡 Endpoint: http://localhost:${PORT}/api/v16`);
     console.log(`🔧 Admin: http://localhost:${PORT}/api/admin`);
+    console.log(`✅ Servidor listo y escuchando en puerto ${PORT}`);
+}).on('error', (err) => {
+    console.error('❌ Error al iniciar el servidor:', err);
+    if (err.code === 'EADDRINUSE') {
+        console.error(`⚠️  Puerto ${PORT} ya está en uso`);
+        console.error('   Ejecuta: pkill -f "node server.js" o cambia el puerto en .env');
+    }
+    process.exit(1);
 });
